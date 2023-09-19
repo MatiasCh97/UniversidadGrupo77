@@ -48,11 +48,13 @@ public class Alumno {
     }
 
     public int getId_Alumno() {
-        return id_Alumno;
+        System.out.println("pase"+this.id_Alumno);
+        return this.id_Alumno;
     }
 
     public void setId_Alumno(int id_Alumno) {
         this.id_Alumno = id_Alumno;
+        
     }
 
     public String getApellido() {

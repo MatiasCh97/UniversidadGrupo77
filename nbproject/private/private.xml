@@ -3,12 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Matias/OneDrive/Documentos/NetBeansProjects/UniversidadGrupo77/src/universidadgrupo77/accesoADatos/MateriaData.java</file>
-            <file>file:/C:/Users/Matias/OneDrive/Documentos/NetBeansProjects/UniversidadGrupo77/src/universidadgrupo77/UniversidadGrupo77.java</file>
             <file>file:/C:/Users/Matias/OneDrive/Documentos/NetBeansProjects/UniversidadGrupo77/src/universidadgrupo77/accesoADatos/InscripcionData.java</file>
-            <file>file:/C:/Users/Matias/OneDrive/Documentos/NetBeansProjects/UniversidadGrupo77/src/universidadgrupo77/entidades/Materia.java</file>
-            <file>file:/C:/Users/Matias/OneDrive/Documentos/NetBeansProjects/UniversidadGrupo77/src/universidadgrupo77/accesoADatos/Conexion.java</file>
+            <file>file:/C:/Users/Matias/OneDrive/Documentos/NetBeansProjects/UniversidadGrupo77/src/universidadgrupo77/vistas/FormularioAlumno.java</file>
+            <file>file:/C:/Users/Matias/OneDrive/Documentos/NetBeansProjects/UniversidadGrupo77/src/universidadgrupo77/entidades/Inscripcion.java</file>
             <file>file:/C:/Users/Matias/OneDrive/Documentos/NetBeansProjects/UniversidadGrupo77/src/universidadgrupo77/accesoADatos/AlumnoData.java</file>
+            <file>file:/C:/Users/Matias/OneDrive/Documentos/NetBeansProjects/UniversidadGrupo77/src/universidadgrupo77/vistas/Principal.java</file>
+            <file>file:/C:/Users/Matias/OneDrive/Documentos/NetBeansProjects/UniversidadGrupo77/src/universidadgrupo77/accesoADatos/MateriaData.java</file>
+            <file>file:/C:/Users/Matias/OneDrive/Documentos/NetBeansProjects/UniversidadGrupo77/src/universidadgrupo77/vistas/ListadoporMateria.java</file>
+            <file>file:/C:/Users/Matias/OneDrive/Documentos/NetBeansProjects/UniversidadGrupo77/src/universidadgrupo77/UniversidadGrupo77.java</file>
+            <file>file:/C:/Users/Matias/OneDrive/Documentos/NetBeansProjects/UniversidadGrupo77/src/universidadgrupo77/entidades/Materia.java</file>
+            <file>file:/C:/Users/Matias/OneDrive/Documentos/NetBeansProjects/UniversidadGrupo77/src/universidadgrupo77/vistas/CargadeNotas.java</file>
+            <file>file:/C:/Users/Matias/OneDrive/Documentos/NetBeansProjects/UniversidadGrupo77/src/universidadgrupo77/accesoADatos/Conexion.java</file>
+            <file>file:/C:/Users/Matias/OneDrive/Documentos/NetBeansProjects/UniversidadGrupo77/src/universidadgrupo77/vistas/FormularioInscripcion.java</file>
+            <file>file:/C:/Users/Matias/OneDrive/Documentos/NetBeansProjects/UniversidadGrupo77/src/universidadgrupo77/vistas/FormularioMateria.java</file>
             <file>file:/C:/Users/Matias/OneDrive/Documentos/NetBeansProjects/UniversidadGrupo77/src/universidadgrupo77/entidades/Alumno.java</file>
         </group>
     </open-files>
