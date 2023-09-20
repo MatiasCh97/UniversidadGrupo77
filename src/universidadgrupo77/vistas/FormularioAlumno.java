@@ -7,6 +7,7 @@ package universidadgrupo77.vistas;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.ZoneId;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import universidadgrupo77.UniversidadGrupo77;
 import universidadgrupo77.accesoADatos.AlumnoData;
@@ -19,6 +20,7 @@ import universidadgrupo77.entidades.Alumno;
 public class FormularioAlumno extends javax.swing.JInternalFrame {
 
     private Alumno alumno;
+
     /**
      * Creates new form FormularioAlumno
      */
@@ -50,7 +52,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
         jDate = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         botonBuscar = new javax.swing.JButton();
-        jButtonnuevo = new javax.swing.JButton();
+        botonNuevo = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
         botonGuardar = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
@@ -91,7 +93,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
 
         jLabel7.setBackground(new java.awt.Color(0, 0, 0));
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel7.setText("Fecha de Nacimiento : ");
+        jLabel7.setText("Fecha de Nac. : ");
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -104,14 +106,15 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonnuevo.setText("Nuevo");
-        jButtonnuevo.addActionListener(new java.awt.event.ActionListener() {
+        botonNuevo.setText("Nuevo");
+        botonNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonnuevoActionPerformed(evt);
+                botonNuevoActionPerformed(evt);
             }
         });
 
         botonEliminar.setText("Eliminar");
+        botonEliminar.setEnabled(false);
         botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEliminarActionPerformed(evt);
@@ -119,6 +122,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
         });
 
         botonGuardar.setText("Guardar");
+        botonGuardar.setEnabled(false);
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonGuardarActionPerformed(evt);
@@ -138,46 +142,41 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(54, 54, 54)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addComponent(jRbestado)
+                .addGap(426, 426, 426))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(257, 257, 257)
+                .addComponent(jLabel1)
+                .addGap(246, 246, 246))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRbestado))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTxtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(botonEliminar)
-                                    .addComponent(jLabel7))
-                                .addGap(18, 18, 18)
-                                .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 136, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonnuevo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonGuardar)
-                                .addGap(61, 61, 61)
-                                .addComponent(botonSalir))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel1)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTxtdocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTxtapellido)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                                .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(76, 76, 76))))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(botonEliminar)
+                                .addComponent(jLabel7)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtapellido)
+                            .addComponent(jTxtdocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(botonNuevo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonGuardar)
+                        .addGap(61, 61, 61)
+                        .addComponent(botonSalir)))
+                .addGap(76, 76, 76))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,7 +206,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonnuevo)
+                            .addComponent(botonNuevo)
                             .addComponent(botonEliminar)
                             .addComponent(botonGuardar)
                             .addComponent(botonSalir))
@@ -224,14 +223,17 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRbestadoActionPerformed
 
-    private void jButtonnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonnuevoActionPerformed
+    private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
         jTxtdocumento.setText("");
         jTxtapellido.setText("");
         jTxtnombre.setText("");
         jRbestado.setSelected(false);
         jDate.setDate(null);
+        botonGuardar.setEnabled(true);
+        botonEliminar.setEnabled(false);
+        
 
-    }//GEN-LAST:event_jButtonnuevoActionPerformed
+    }//GEN-LAST:event_botonNuevoActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         this.dispose();
@@ -242,38 +244,46 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
         Alumno alumno = new Alumno(Integer.parseInt(jTxtdocumento.getText()), jTxtapellido.getText(), jTxtnombre.getText(), fechan, jRbestado.isSelected());
         AlumnoData alu = new AlumnoData();
         alu.guardarAlumno(alumno);
+        botonGuardar.setEnabled(false);
+
 
 
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         AlumnoData alu = new AlumnoData();
-        System.out.println(this.alumno.getNombre());
-        if(this.alumno==null){
-            JOptionPane.showMessageDialog(rootPane, "No se ha buscado ningun alumno");
-            
-        }else{
+
+        if (this.alumno == null) {
+
+            JOptionPane.showMessageDialog(rootPane, "No se ha encontrado ningun alumno");
+
+        } else {
             System.out.println(this.alumno.getId_Alumno());
             alu.elminarAlumno(this.alumno.getId_Alumno());
-            JOptionPane.showMessageDialog(rootPane, "wxc4ption");
+
         }
-     
-        
-        
-        
-       
-        
-       
+
+
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
- 
+
         Alumno alumno = new Alumno();
         AlumnoData alu = new AlumnoData();
         Alumno alumnoencontrado = alu.buscarAlumnoPorDni(Integer.parseInt(jTxtdocumento.getText()));
-        JOptionPane.showMessageDialog(rootPane, "Se ha encontrado alumno con dni: "+Integer.parseInt(jTxtdocumento.getText()));
-        this.alumno=alumnoencontrado;
-                
+        if (alumnoencontrado != null) {
+            jTxtapellido.setText(alumnoencontrado.getApellido());
+            jTxtnombre.setText(alumnoencontrado.getNombre());
+            jRbestado.setSelected(alumnoencontrado.isEstado());
+            jDate.setDate(Date.from(alumnoencontrado.getDate().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+
+            JOptionPane.showMessageDialog(rootPane, "Se ha encontrado alumno con dni: " + Integer.parseInt(jTxtdocumento.getText()));
+            this.alumno = alumnoencontrado;
+            botonEliminar.setEnabled(true);
+        } else {
+            botonEliminar.setEnabled(false);
+        }
+
     }//GEN-LAST:event_botonBuscarActionPerformed
 
 
@@ -281,8 +291,8 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
     private javax.swing.JButton botonBuscar;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonGuardar;
+    private javax.swing.JButton botonNuevo;
     private javax.swing.JButton botonSalir;
-    private javax.swing.JButton jButtonnuevo;
     private com.toedter.calendar.JDateChooser jDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
