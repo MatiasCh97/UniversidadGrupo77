@@ -4,17 +4,37 @@
  */
 package universidadgrupo77.vistas;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import universidadgrupo77.accesoADatos.AlumnoData;
+import universidadgrupo77.accesoADatos.InscripcionData;
+import universidadgrupo77.accesoADatos.MateriaData;
+import universidadgrupo77.entidades.Alumno;
+import universidadgrupo77.entidades.Inscripcion;
+import universidadgrupo77.entidades.Materia;
+
 /**
  *
  * @author Matias
  */
 public class CargadeNotas extends javax.swing.JInternalFrame {
+private ArrayList<Materia> listaM;
+private ArrayList<Alumno> listaA;
+private MateriaData mData;
+private AlumnoData aData;
+private InscripcionData inscData;
+ 
 
-    /**
-     * Creates new form CargadeNotas
-     */
+private DefaultTableModel modelo;
     public CargadeNotas() {
         initComponents();
+        aData = new AlumnoData();
+        listaA= (ArrayList<Alumno>)aData.listarAlumnos();
+        inscData = new InscripcionData();
+        modelo = new DefaultTableModel();
+        cargarAlumnos();
+        armarCabeceraTabla();
+        
     }
 
     /**
@@ -32,7 +52,7 @@ public class CargadeNotas extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jSalir = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -53,14 +73,23 @@ public class CargadeNotas extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setText("Seleccione a un alumno : ");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Guardar");
-
-        jButton2.setText("Salir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jSalir.setText("Salir");
+        jSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSalirActionPerformed(evt);
             }
         });
 
@@ -69,12 +98,10 @@ public class CargadeNotas extends javax.swing.JInternalFrame {
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
-                {null, null, null},
-                {null, null, null},
                 {null, null, null}
             },
             new String [] {
-                "Codigo", "Nombre", "Nota"
+                "Title 1", "Title 2", "Title 3"
             }
         ));
         jScrollPane2.setViewportView(jTable1);
@@ -90,12 +117,11 @@ public class CargadeNotas extends javax.swing.JInternalFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButton1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2))
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSalir))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(143, 143, 143))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -112,29 +138,83 @@ public class CargadeNotas extends javax.swing.JInternalFrame {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jSalir))
                 .addGap(134, 134, 134))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalirActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jSalirActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+       cargarDatos();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if(filaSeleccionada != -1){
+            Alumno a = (Alumno)jComboBox1.getSelectedItem();
+            
+            int idMateria=(Integer)modelo.getValueAt(filaSeleccionada, 0);
+            String nombreMateria=(String)modelo.getValueAt(filaSeleccionada,1);
+            double nota = Double.parseDouble(modelo.getValueAt(filaSeleccionada,2).toString());
+           
+            
+            inscData.actualizarNota(a.getId_Alumno(),idMateria,nota);
+            borrarFilaTabla();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+private void cargarAlumnos(){
+    for(Alumno item: listaA){
+        jComboBox1.addItem(item);
+    }
+}
+private void armarCabeceraTabla(){
+    ArrayList<Object> filaCabecera = new ArrayList<>();
+    filaCabecera.add("Codigo");
+    filaCabecera.add("Nombre");
+    filaCabecera.add("Nota");
+    for(Object it: filaCabecera){
+        modelo.addColumn(it);
+    }
+    jTable1.setModel(modelo);
+    
+}
+
+private void eliminarFilas(){
+    int indice = modelo.getRowCount()-1;
+    for(int i = indice; i>=0; i --){
+        modelo.removeRow(i);
+    }
+}
+private void cargarDatos(){
+    Alumno selec = (Alumno)jComboBox1.getSelectedItem();
+    listaM = (ArrayList)inscData.obetenerMateriasCursadas(selec.getId_Alumno());
+    for(Materia m:listaM){
+        modelo.addRow(new Object[] {m.getIdMateria(),m.getNombre(), 0.00});
+    }
+}
+private void borrarFilaTabla(){
+        int indice = modelo.getRowCount() -1;
+        
+        for(int i = indice;i>=0;i--){
+            modelo.removeRow(i);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Alumno> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JList<String> jList1;
+    private javax.swing.JButton jSalir;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;

@@ -19,6 +19,7 @@ import universidadgrupo77.entidades.Alumno;
  */
 public class FormularioAlumno extends javax.swing.JInternalFrame {
 
+    private AlumnoData alu= new AlumnoData();
     private Alumno alumno;
 
     /**
@@ -142,18 +143,8 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(54, 54, 54)
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(jRbestado)
-                .addGap(426, 426, 426))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(257, 257, 257)
-                .addComponent(jLabel1)
-                .addGap(246, 246, 246))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel3)
@@ -163,20 +154,30 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel7)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTxtapellido)
-                            .addComponent(jTxtdocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTxtdocumento)
+                            .addComponent(jTxtnombre)
+                            .addComponent(jDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
                         .addComponent(botonNuevo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonGuardar)
-                        .addGap(61, 61, 61)
-                        .addComponent(botonSalir)))
+                        .addGap(42, 42, 42)
+                        .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(76, 76, 76))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRbestado))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(257, 257, 257)
+                        .addComponent(jLabel1)))
+                .addGap(246, 246, 246))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,6 +225,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRbestadoActionPerformed
 
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
+        
         jTxtdocumento.setText("");
         jTxtapellido.setText("");
         jTxtnombre.setText("");
@@ -242,7 +244,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
         LocalDate fechan = jDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         Alumno alumno = new Alumno(Integer.parseInt(jTxtdocumento.getText()), jTxtapellido.getText(), jTxtnombre.getText(), fechan, jRbestado.isSelected());
-        AlumnoData alu = new AlumnoData();
+      
         alu.guardarAlumno(alumno);
         botonGuardar.setEnabled(false);
 
@@ -251,11 +253,11 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        AlumnoData alu = new AlumnoData();
+       
 
         if (this.alumno == null) {
 
-            JOptionPane.showMessageDialog(rootPane, "No se ha encontrado ningun alumno");
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccioando ningun alumno");
 
         } else {
             System.out.println(this.alumno.getId_Alumno());
@@ -268,8 +270,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
 
-        Alumno alumno = new Alumno();
-        AlumnoData alu = new AlumnoData();
+        
         Alumno alumnoencontrado = alu.buscarAlumnoPorDni(Integer.parseInt(jTxtdocumento.getText()));
         if (alumnoencontrado != null) {
             jTxtapellido.setText(alumnoencontrado.getApellido());

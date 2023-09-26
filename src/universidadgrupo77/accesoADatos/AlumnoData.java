@@ -152,13 +152,14 @@ public class AlumnoData {
     }
 
     public List<Alumno> listarAlumnos() {
-        String sql = "SELECT dni, apellido, nombre, fechaNacimiento FROM alumno WHERE estado = 1";
+        String sql = "SELECT id_Alumno,dni, apellido, nombre, fechaNacimiento FROM alumno WHERE estado = 1";
         ArrayList<Alumno> alumnos = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Alumno alumno = new Alumno();
+                alumno.setId_Alumno(rs.getInt("id_Alumno"));
                 alumno.setDni(rs.getInt("dni"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setApellido(rs.getString("apellido"));

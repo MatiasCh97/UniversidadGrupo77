@@ -4,15 +4,18 @@
  */
 package universidadgrupo77.vistas;
 
+import javax.swing.JOptionPane;
+import universidadgrupo77.accesoADatos.MateriaData;
+import universidadgrupo77.entidades.Materia;
+
 /**
  *
  * @author Matias
  */
 public class FormularioMateria extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form FormularioMateria
-     */
+    
+    private MateriaData materiaData= new MateriaData();
+    private Materia materia;
     public FormularioMateria() {
         initComponents();
     }
@@ -31,11 +34,11 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jBuscar = new javax.swing.JButton();
         jButtonnuevo = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jEliminar = new javax.swing.JButton();
+        jGuardar = new javax.swing.JButton();
+        jSalir = new javax.swing.JButton();
         jRBestado = new javax.swing.JRadioButton();
         jTxtcodigo = new javax.swing.JTextField();
         jTxtnombre = new javax.swing.JTextField();
@@ -60,7 +63,12 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel5.setText("Estado : ");
 
-        jButton1.setText("Buscar");
+        jBuscar.setText("Buscar");
+        jBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBuscarActionPerformed(evt);
+            }
+        });
 
         jButtonnuevo.setText("Nuevo");
         jButtonnuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -69,31 +77,26 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton3.setText("Eliminar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jEliminar.setText("Eliminar");
+        jEliminar.setEnabled(false);
+        jEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jEliminarActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Guardar");
-
-        jButton5.setText("Salir");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jGuardar.setText("Guardar");
+        jGuardar.setEnabled(false);
+        jGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jGuardarActionPerformed(evt);
             }
         });
 
-        jRBestado.addActionListener(new java.awt.event.ActionListener() {
+        jSalir.setText("Salir");
+        jSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRBestadoActionPerformed(evt);
-            }
-        });
-
-        jTxta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtaActionPerformed(evt);
+                jSalirActionPerformed(evt);
             }
         });
 
@@ -107,11 +110,11 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonnuevo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                        .addComponent(jButton3)
+                        .addComponent(jEliminar)
                         .addGap(31, 31, 31)
-                        .addComponent(jButton4)
+                        .addComponent(jGuardar)
                         .addGap(37, 37, 37)
-                        .addComponent(jButton5))
+                        .addComponent(jSalir))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -125,7 +128,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTxtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1))
+                                .addComponent(jBuscar))
                             .addComponent(jTxtnombre)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,7 +153,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel2)
                                 .addComponent(jTxtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton1))
+                            .addComponent(jBuscar))
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -165,52 +168,81 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
                 .addGap(100, 100, 100)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonnuevo)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(jEliminar)
+                    .addComponent(jGuardar)
+                    .addComponent(jSalir))
                 .addContainerGap(80, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRBestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBestadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRBestadoActionPerformed
+    private void jEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEliminarActionPerformed
+       if (this.materia == null) {
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+            JOptionPane.showMessageDialog(rootPane, "No se ha seleccionado ninguna materia");
 
-    private void jTxtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtaActionPerformed
+        } else {
+            System.out.println(this.materia.getIdMateria());
+            materiaData.elminarMateria(this.materia.getIdMateria());
+
+        }
+    }//GEN-LAST:event_jEliminarActionPerformed
 
     private void jButtonnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonnuevoActionPerformed
         jTxtcodigo.setText("");
         jTxtnombre.setText("");
         jTxta.setText("");
         jRBestado.setSelected(false);
-     
+        jGuardar.setEnabled(true);
+        jEliminar.setEnabled(false);
     }//GEN-LAST:event_jButtonnuevoActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalirActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_jSalirActionPerformed
+
+    private void jBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarActionPerformed
+      Materia materiaEncontrada = materiaData.buscarMateria(Integer.parseInt(jTxtcodigo.getText()));
+      if (materiaEncontrada != null) {
+            
+            jTxtnombre.setText(materiaEncontrada.getNombre());
+            jTxta.setText(String.valueOf(materiaEncontrada.getAño()));
+            jRBestado.setSelected(materiaEncontrada.isEstado());
+           
+
+            JOptionPane.showMessageDialog(rootPane, "Se ha encontrado materia con codigo: " + Integer.parseInt(jTxtcodigo.getText()));
+            this.materia = materiaEncontrada;
+            jGuardar.setEnabled(false);
+            jEliminar.setEnabled(true);
+        } else {
+            jEliminar.setEnabled(false);
+        }
+
+                                               
+    }//GEN-LAST:event_jBuscarActionPerformed
+
+    private void jGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGuardarActionPerformed
+        Materia materia = new Materia(Integer.parseInt(jTxtcodigo.getText()), jTxtnombre.getText(), Integer.parseInt(jTxta.getText()), jRBestado.isSelected());
+      
+        materiaData.guardarMateria(materia);
+        jGuardar.setEnabled(false);
+
+    }//GEN-LAST:event_jGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jBuscar;
     private javax.swing.JButton jButtonnuevo;
+    private javax.swing.JButton jEliminar;
+    private javax.swing.JButton jGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JRadioButton jRBestado;
+    private javax.swing.JButton jSalir;
     private javax.swing.JTextField jTxta;
     private javax.swing.JTextField jTxtcodigo;
     private javax.swing.JTextField jTxtnombre;
