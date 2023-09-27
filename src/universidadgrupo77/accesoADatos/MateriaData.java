@@ -112,13 +112,14 @@ public class MateriaData {
     }
 
     public List<Materia> listarMateria() {
-        String sql = "SELECT  nombre, año  FROM materia WHERE estado = 1";
+        String sql = "SELECT idMateria, nombre, año  FROM materia WHERE estado = 1";
         ArrayList<Materia> materias = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Materia materia = new Materia();
+                materia.setIdMateria(rs.getInt("idMateria"));
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAño(rs.getInt("año"));
                 materia.setEstado(true);

@@ -201,7 +201,7 @@ public class InscripcionData {
     }
 
     public List<Alumno> obetenerAlumnoPorMateria(int idMateria) {
-        String sql = "SELECT a.id+Alumno, dni, nombre, apellido, fechaNacimiento, estado FROM inscripcion i, alumno a WHERE i.id_Alumno = a.id_Alumno AND idMateria= ? AND a.estado =1";
+        String sql = "SELECT a.id_Alumno, dni, nombre, apellido, fechaNacimiento, estado FROM inscripcion i, alumno a WHERE i.id_Alumno = a.id_Alumno AND idMateria= ? AND a.estado =1";
         ArrayList<Alumno> alumnosMateria = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -210,6 +210,7 @@ public class InscripcionData {
             while (rs.next()) {
                 Alumno alumno = new Alumno();
                 alumno.setId_Alumno(rs.getInt("id_Alumno"));
+                alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setDate(rs.getDate("fechaNacimiento").toLocalDate());

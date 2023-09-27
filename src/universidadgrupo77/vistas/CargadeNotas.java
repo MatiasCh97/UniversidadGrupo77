@@ -188,12 +188,7 @@ private void armarCabeceraTabla(){
     
 }
 
-private void eliminarFilas(){
-    int indice = modelo.getRowCount()-1;
-    for(int i = indice; i>=0; i --){
-        modelo.removeRow(i);
-    }
-}
+
 private void cargarDatos(){
     Alumno selec = (Alumno)jComboBox1.getSelectedItem();
     listaM = (ArrayList)inscData.obetenerMateriasCursadas(selec.getId_Alumno());
